@@ -1,105 +1,55 @@
 package com.erp.core.domain;
 
+import com.erp.core.constants.TableName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import com.erp.core.constants.TableName;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.UniqueConstraint;
+
 import java.time.Instant;
-import java.util.Objects;
 import java.util.UUID;
+import com.erp.core.enums.EntityStatus;
 
 @Entity
 @Table(name = TableName.ACCOUNT_ROLE_ASSIGNMENT)
-@IdClass(AccountRole.AccountRoleId.class)
-public class AccountRole {
+public class AccountRole extends BaseAuditingEntity {
 
-    @Id
-    @Column(name = "account_id")
+    @Column(name = "account_id", nullable = false)
     private UUID accountId;
 
-    @Id
-    @Column(name = "role_id")
+    @Column(name = "role_id", nullable = false)
     private UUID roleId;
 
+    @Column(name = "scope_id", nullable = false)
+    private UUID scopeId;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
-    private String status = "ACTIVE";
+    private EntityStatus status = EntityStatus.ACTIVE;
 
     @Column(name = "assigned_at", nullable = false)
     private Instant assignedAt = Instant.now();
 
+    @Column(name = "assigned_by", length = 100)
+    private String assignedBy;
+
     @Column(name = "expires_at")
     private Instant expiresAt;
 
-    public static class AccountRoleId implements Serializable {
-        private UUID accountId;
-        private UUID roleId;
-
-        public AccountRoleId() {}
-
-        public AccountRoleId(UUID accountId, UUID roleId) {
-            this.accountId = accountId;
-            this.roleId = roleId;
-        }
-
-        public UUID getAccountId() { return accountId; }
-        public void setAccountId(UUID accountId) { this.accountId = accountId; }
-        public UUID getRoleId() { return roleId; }
-        public void setRoleId(UUID roleId) { this.roleId = roleId; }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            AccountRoleId that = (AccountRoleId) o;
-            return Objects.equals(accountId, that.accountId) && Objects.equals(roleId, that.roleId);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(accountId, roleId);
-        }
-    }
-
-    public UUID getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(UUID accountId) {
-        this.accountId = accountId;
-    }
-
-    public UUID getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(UUID roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Instant getAssignedAt() {
-        return assignedAt;
-    }
-
-    public void setAssignedAt(Instant assignedAt) {
-        this.assignedAt = assignedAt;
-    }
-
-    public Instant getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(Instant expiresAt) {
-        this.expiresAt = expiresAt;
-    }
+    public UUID getAccountId() { return accountId; }
+    public void setAccountId(UUID accountId) { this.accountId = accountId; }
+    public UUID getRoleId() { return roleId; }
+    public void setRoleId(UUID roleId) { this.roleId = roleId; }
+    public UUID getScopeId() { return scopeId; }
+    public void setScopeId(UUID scopeId) { this.scopeId = scopeId; }
+    public EntityStatus getStatus() { return status; }
+    public void setStatus(EntityStatus status) { this.status = status; }
+    public Instant getAssignedAt() { return assignedAt; }
+    public void setAssignedAt(Instant assignedAt) { this.assignedAt = assignedAt; }
+    public String getAssignedBy() { return assignedBy; }
+    public void setAssignedBy(String assignedBy) { this.assignedBy = assignedBy; }
+    public Instant getExpiresAt() { return expiresAt; }
+    public void setExpiresAt(Instant expiresAt) { this.expiresAt = expiresAt; }
 }
