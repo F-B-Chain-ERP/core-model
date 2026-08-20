@@ -1,9 +1,9 @@
 package com.erp.core.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import com.erp.core.enums.EntityStatus;
+import com.erp.core.enums.RoleType;
+import jakarta.persistence.*;
 import com.erp.core.constants.TableName;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = TableName.ROLE)
@@ -18,11 +18,13 @@ public class Role extends BaseAuditingEntity {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
-    private String type = "SYSTEM";
+    private RoleType type = RoleType.SYSTEM;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
-    private String status = "ACTIVE";
+    private EntityStatus status = EntityStatus.ACTIVE;
 
     public String getCode() {
         return code;
@@ -48,19 +50,19 @@ public class Role extends BaseAuditingEntity {
         this.description = description;
     }
 
-    public String getType() {
+    public RoleType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(RoleType type) {
         this.type = type;
     }
 
-    public String getStatus() {
+    public EntityStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(EntityStatus status) {
         this.status = status;
     }
 }
