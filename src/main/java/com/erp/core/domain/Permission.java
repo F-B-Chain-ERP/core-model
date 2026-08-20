@@ -3,6 +3,9 @@ package com.erp.core.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.erp.core.constants.TableName;
+import com.erp.core.enums.EntityStatus;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,8 +24,9 @@ public class Permission extends BaseAuditingEntity {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
-    private String status = "ACTIVE";
+    private EntityStatus status = EntityStatus.ACTIVE;
 
     public String getCode() {
         return code;
@@ -56,11 +60,11 @@ public class Permission extends BaseAuditingEntity {
         this.description = description;
     }
 
-    public String getStatus() {
+    public EntityStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(EntityStatus status) {
         this.status = status;
     }
 }

@@ -3,6 +3,11 @@ package com.erp.core.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.erp.core.constants.TableName;
+import com.erp.core.constants.Defaults;
+import com.erp.core.enums.AuthProvider;
+import com.erp.core.enums.EntityStatus;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import java.time.Instant;
 
@@ -14,7 +19,7 @@ public class Account extends BaseAuditingEntity {
     private String username;
 
     @Column(name = "password", nullable = false, length = 255)
-    private String password;
+    private String passwordHash;
 
     @Column(name = "full_name", nullable = false, length = 150)
     private String fullName;
@@ -28,17 +33,22 @@ public class Account extends BaseAuditingEntity {
     @Column(name = "avatar_url", length = 500)
     private String avatarUrl;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
-    private String status = "ACTIVE";
+    private EntityStatus status = Defaults.DEFAULT_STATUS;
 
     @Column(name = "last_login_at")
     private Instant lastLoginAt;
 
-    @Column(name = "auth_provider", length = 50)
-    private String authProvider;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider", nullable = false, length = 50)
+    private AuthProvider authProvider = Defaults.DEFAULT_AUTH_PROVIDER;
 
     @Column(name = "provider_id", length = 255)
     private String providerId;
+
+    @Column(name = "system_protected", nullable = false)
+    private boolean systemProtected;
 
     public String getUsername() {
         return username;
@@ -49,11 +59,11 @@ public class Account extends BaseAuditingEntity {
     }
 
     public String getPassword() {
-        return password;
+        return passwordHash;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passwordHash = password;
     }
 
     public String getFullName() {
@@ -88,11 +98,11 @@ public class Account extends BaseAuditingEntity {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getStatus() {
+    public EntityStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(EntityStatus status) {
         this.status = status;
     }
 
@@ -104,11 +114,11 @@ public class Account extends BaseAuditingEntity {
         this.lastLoginAt = lastLoginAt;
     }
 
-    public String getAuthProvider() {
+    public AuthProvider getAuthProvider() {
         return authProvider;
     }
 
-    public void setAuthProvider(String authProvider) {
+    public void setAuthProvider(AuthProvider authProvider) {
         this.authProvider = authProvider;
     }
 
@@ -119,4 +129,7 @@ public class Account extends BaseAuditingEntity {
     public void setProviderId(String providerId) {
         this.providerId = providerId;
     }
+
+    public boolean isSystemProtected() { return systemProtected; }
+    public void setSystemProtected(boolean systemProtected) { this.systemProtected = systemProtected; }
 }
