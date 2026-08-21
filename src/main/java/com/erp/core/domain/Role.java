@@ -1,10 +1,10 @@
 package com.erp.core.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import com.erp.core.constants.TableName;
 import com.erp.core.enums.EntityStatus;
 import com.erp.core.enums.RoleType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
