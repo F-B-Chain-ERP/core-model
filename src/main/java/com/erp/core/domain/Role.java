@@ -1,11 +1,10 @@
 package com.erp.core.domain;
 
-import com.erp.core.enums.EntityStatus;
-import com.erp.core.enums.RoleType;
-import jakarta.persistence.*;
 import com.erp.core.constants.TableName;
 import com.erp.core.enums.EntityStatus;
 import com.erp.core.enums.RoleType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
@@ -26,7 +25,6 @@ public class Role extends BaseAuditingEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
     private RoleType roleType = RoleType.SYSTEM;
-    private RoleType type = RoleType.SYSTEM;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
@@ -58,14 +56,10 @@ public class Role extends BaseAuditingEntity {
 
     public RoleType getRoleType() {
         return roleType;
-    public RoleType getType() {
-        return type;
     }
 
     public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
-    public void setType(RoleType type) {
-        this.type = type;
     }
 
     public EntityStatus getStatus() {

@@ -13,7 +13,7 @@ public record CreateRoleRequest(
         String description,
 
         @NotNull(message = "Role type must not be null")
-        RoleType type,
+        RoleType roleType,
 
         @NotNull(message = "Role status must not be null")
         EntityStatus status
