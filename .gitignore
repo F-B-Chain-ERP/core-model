@@ -1,6 +1,17 @@
 # Compiled class file
 *.class
 
+# Eclipse / STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+org.eclipse.*
+org/
+
 # Build output
 target/
 
