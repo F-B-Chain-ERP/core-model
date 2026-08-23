@@ -1,15 +1,17 @@
-package com.erp.core.dto.auth;
+package com.erp.core.dto.response;
 
 import com.erp.core.enums.AuthProvider;
 import com.erp.core.enums.EntityStatus;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * Thông tin khách hàng trả về sau đăng ký / đăng nhập.
+ * Thông tin khách hàng trả về ở nghiệp vụ quản lý bởi admin nội bộ
+ * (nhiều trường hơn {@code CustomerResponse} dùng cho xác thực).
  */
-public record CustomerResponse(
+public record CustomerDetailResponse(
         UUID id,
         String customerCode,
         String username,
@@ -19,6 +21,9 @@ public record CustomerResponse(
         AuthProvider authProvider,
         boolean hasLocalPassword,
         boolean emailVerified,
+        String avatarUrl,
+        LocalDate dateOfBirth,
+        String gender,
         EntityStatus status,
         Instant lastLoginAt,
         Instant createdAt,
