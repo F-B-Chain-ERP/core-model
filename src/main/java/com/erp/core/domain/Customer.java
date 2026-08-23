@@ -25,6 +25,9 @@ public class Customer extends BaseAuditingEntity {
     @Column(name = "customer_code", nullable = false, length = 50)
     private String customerCode;
 
+    @Column(name = "username", length = 100)
+    private String username;
+
     @Column(name = "full_name", nullable = false, length = 150)
     private String fullName;
 
@@ -72,6 +75,14 @@ public class Customer extends BaseAuditingEntity {
 
     public void setCustomerCode(String customerCode) {
         this.customerCode = customerCode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFullName() {
