@@ -7,19 +7,18 @@ import java.time.Instant;
 import java.util.UUID;
 
 /**
- * Read-side projection of {@code Account}.
+ * Thông tin khách hàng trả về sau đăng ký / đăng nhập.
  */
-public record AccountResponse(
+public record CustomerResponse(
         UUID id,
-        String username,
-        String email,
+        String customerCode,
         String fullName,
         String phone,
-        String avatarUrl,
+        String email,
         AuthProvider authProvider,
         boolean hasLocalPassword,
+        boolean emailVerified,
         EntityStatus status,
-        UUID primaryBranchId,
         Instant lastLoginAt,
         Instant createdAt,
         Instant updatedAt
