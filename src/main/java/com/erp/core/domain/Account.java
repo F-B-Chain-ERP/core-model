@@ -10,6 +10,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.util.UUID;
+
 
 @Entity
 @Table(name = TableName.ACCOUNT)
@@ -18,8 +20,8 @@ public class Account extends BaseAuditingEntity {
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 255)
-    private String passwordHash;
+    @Column(name = "password", length = 255)
+    private String password;
 
     @Column(name = "full_name", nullable = false, length = 150)
     private String fullName;
@@ -50,6 +52,12 @@ public class Account extends BaseAuditingEntity {
     @Column(name = "system_protected", nullable = false)
     private boolean systemProtected;
 
+    @Column(name = "primary_branch_id")
+    private UUID primaryBranchId;
+
+    @Column(name = "has_local_password", nullable = false)
+    private boolean hasLocalPassword = true;
+
     public String getUsername() {
         return username;
     }
@@ -59,11 +67,11 @@ public class Account extends BaseAuditingEntity {
     }
 
     public String getPassword() {
-        return passwordHash;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.passwordHash = password;
+        this.password = password;
     }
 
     public String getFullName() {
@@ -132,4 +140,10 @@ public class Account extends BaseAuditingEntity {
 
     public boolean isSystemProtected() { return systemProtected; }
     public void setSystemProtected(boolean systemProtected) { this.systemProtected = systemProtected; }
+
+    public UUID getPrimaryBranchId() { return primaryBranchId; }
+    public void setPrimaryBranchId(UUID primaryBranchId) { this.primaryBranchId = primaryBranchId; }
+
+    public boolean isHasLocalPassword() { return hasLocalPassword; }
+    public void setHasLocalPassword(boolean hasLocalPassword) { this.hasLocalPassword = hasLocalPassword; }
 }
