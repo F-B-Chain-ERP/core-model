@@ -1,8 +1,7 @@
-package com.erp.core.dto.response;
+package com.erp.core.dto.response.SupplierMaterial;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.UUID;
 
 /**
  * DTO phía response (read-side projection) biểu diễn một liên kết bảng giá nhà cung cấp -

@@ -1,4 +1,4 @@
-package com.erp.core.dto.request.proc;
+package com.erp.core.dto.request.proc.SupplierMaterial;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -7,15 +7,13 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public record UpdateSupplierMaterialRequest(
-
+public record CreateSupplierMaterialRequest(
 
         @NotNull(message = "Mã nhà cung cấp không được để trống")
         UUID supplierId,
 
         @NotNull(message = "Mã nguyên vật liệu không được để trống")
         UUID materialId,
-
 
         String supplierSku,
 
