@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = TableName.ACCOUNT)
 public class Account extends BaseAuditingEntity {
