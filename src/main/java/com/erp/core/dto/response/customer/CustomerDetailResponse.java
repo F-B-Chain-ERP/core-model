@@ -1,4 +1,4 @@
-package com.erp.core.dto.response;
+package com.erp.core.dto.response.customer;
 
 import com.erp.core.enums.AuthProvider;
 import com.erp.core.enums.EntityStatus;

@@ -1,4 +1,4 @@
-package com.erp.core.dto.response;
+package com.erp.core.dto.response.branch;
 
 import java.math.BigDecimal;
 import java.util.UUID;

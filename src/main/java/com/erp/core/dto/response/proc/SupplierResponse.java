@@ -1,4 +1,4 @@
-package com.erp.core.dto.response;
+package com.erp.core.dto.response.proc;
 
 import java.time.Instant;
 
