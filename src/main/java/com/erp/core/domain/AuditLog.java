@@ -1,10 +1,11 @@
 package com.erp.core.domain;
 
+import com.erp.core.constants.TableName;
+import com.erp.core.enums.EntityStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import com.erp.core.constants.TableName;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.Map;
@@ -14,14 +15,17 @@ import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = TableName.AUDIT_LOG)
-public class AuditLog {
+public class AuditLog extends BaseAuditingEntity {
 
-    @Id
-    @Column(name = "id", columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 30)
+    private EntityStatus status = EntityStatus.ACTIVE;
 
-    @Column(name = "actor_account_id")
-    private UUID actorAccountId;
+    @Column(name = "actor_type", length = 20)
+    private String actorType;
+
+    @Column(name = "actor_id")
+    private UUID actorId;
 
     @Column(name = "action", nullable = false, length = 100)
     private String action;
@@ -34,6 +38,9 @@ public class AuditLog {
 
     @Column(name = "target_id")
     private UUID targetId;
+
+    @Column(name = "branch_id")
+    private UUID branchId;
 
     @Column(name = "ip_address", length = 45)
     private String ipAddress;
@@ -49,33 +56,28 @@ public class AuditLog {
     @Column(name = "after_data", columnDefinition = "jsonb")
     private Map<String, Object> afterData;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant createdAt = Instant.now();
-
-    @PrePersist
-    void prePersist() {
-        if (this.id == null) {
-            this.id = UUID.randomUUID();
-        }
-        if (this.createdAt == null) {
-            this.createdAt = Instant.now();
-        }
+    public EntityStatus getStatus() {
+        return status;
     }
 
-    public UUID getId() {
-        return id;
+    public void setStatus(EntityStatus status) {
+        this.status = status;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public String getActorType() {
+        return actorType;
     }
 
-    public UUID getActorAccountId() {
-        return actorAccountId;
+    public void setActorType(String actorType) {
+        this.actorType = actorType;
     }
 
-    public void setActorAccountId(UUID actorAccountId) {
-        this.actorAccountId = actorAccountId;
+    public UUID getActorId() {
+        return actorId;
+    }
+
+    public void setActorId(UUID actorId) {
+        this.actorId = actorId;
     }
 
     public String getAction() {
@@ -110,6 +112,14 @@ public class AuditLog {
         this.targetId = targetId;
     }
 
+    public UUID getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(UUID branchId) {
+        this.branchId = branchId;
+    }
+
     public String getIpAddress() {
         return ipAddress;
     }
@@ -140,13 +150,5 @@ public class AuditLog {
 
     public void setAfterData(Map<String, Object> afterData) {
         this.afterData = afterData;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
     }
 }

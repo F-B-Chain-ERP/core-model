@@ -10,6 +10,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = TableName.ACCOUNT)
@@ -49,6 +50,18 @@ public class Account extends BaseAuditingEntity {
 
     @Column(name = "system_protected", nullable = false)
     private boolean systemProtected;
+
+    @Column(name = "failed_login_attempts", nullable = false)
+    private int failedLoginAttempts = 0;
+
+    @Column(name = "locked_until")
+    private Instant lockedUntil;
+
+    @Column(name = "has_local_password", nullable = false)
+    private boolean hasLocalPassword = true;
+
+    @Column(name = "primary_branch_id")
+    private UUID primaryBranchId;
 
     public String getUsername() {
         return username;
@@ -132,4 +145,16 @@ public class Account extends BaseAuditingEntity {
 
     public boolean isSystemProtected() { return systemProtected; }
     public void setSystemProtected(boolean systemProtected) { this.systemProtected = systemProtected; }
+
+    public int getFailedLoginAttempts() { return failedLoginAttempts; }
+    public void setFailedLoginAttempts(int failedLoginAttempts) { this.failedLoginAttempts = failedLoginAttempts; }
+
+    public Instant getLockedUntil() { return lockedUntil; }
+    public void setLockedUntil(Instant lockedUntil) { this.lockedUntil = lockedUntil; }
+
+    public boolean isHasLocalPassword() { return hasLocalPassword; }
+    public void setHasLocalPassword(boolean hasLocalPassword) { this.hasLocalPassword = hasLocalPassword; }
+
+    public UUID getPrimaryBranchId() { return primaryBranchId; }
+    public void setPrimaryBranchId(UUID primaryBranchId) { this.primaryBranchId = primaryBranchId; }
 }
