@@ -2,7 +2,6 @@ package com.erp.core.dto.request.proc;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -22,7 +21,7 @@ public record PurchaseOrderItemRequest(
         UUID unitId,
 
         @NotNull(message = "Đơn giá không được để trống")
-        @PositiveOrZero(message = "Đơn giá phải >= 0")
+        @Positive(message = "Đơn giá phải > 0")
         BigDecimal unitPrice
 ) {
 }

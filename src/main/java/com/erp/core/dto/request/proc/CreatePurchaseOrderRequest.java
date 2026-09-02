@@ -2,6 +2,7 @@ package com.erp.core.dto.request.proc;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,6 +25,7 @@ public record CreatePurchaseOrderRequest(
 
         LocalDate expectedDate,
 
+        @Size(max = 500, message = "Ghi chú không được vượt quá 500 ký tự")
         String note,
 
         @NotEmpty(message = "Đơn mua hàng phải có ít nhất một dòng chi tiết")

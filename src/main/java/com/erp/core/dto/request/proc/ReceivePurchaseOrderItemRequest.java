@@ -1,7 +1,7 @@
 package com.erp.core.dto.request.proc;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,7 +14,7 @@ public record ReceivePurchaseOrderItemRequest(
         UUID purchaseOrderItemId,
 
         @NotNull(message = "Số lượng nhận không được để trống")
-        @PositiveOrZero(message = "Số lượng nhận phải >= 0")
+        @Positive(message = "Số lượng nhận phải > 0")
         BigDecimal receivedQuantity
 ) {
 }
