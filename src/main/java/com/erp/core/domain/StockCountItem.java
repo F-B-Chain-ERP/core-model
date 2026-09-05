@@ -23,10 +23,10 @@ public class StockCountItem extends BaseAuditingEntity {
     @Column(name = "system_quantity", nullable = false, precision = 14, scale = 3)
     private BigDecimal systemQuantity;
 
-    @Column(name = "counted_quantity", nullable = false, precision = 14, scale = 3)
+    @Column(name = "counted_quantity", precision = 14, scale = 3)
     private BigDecimal countedQuantity;
 
-    @Column(name = "variance_quantity", nullable = false, precision = 14, scale = 3)
+    @Column(name = "variance_quantity", precision = 14, scale = 3)
     private BigDecimal varianceQuantity;
 
     @Column(name = "note", length = 255)
