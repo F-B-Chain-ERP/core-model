@@ -32,6 +32,9 @@ public record UpdateMaterialRequest(
         @Min(value = 1, message = "Số ngày sử dụng phải lớn hơn 0")
         Integer shelfLifeDays,
 
-        Boolean isPerishable
+        Boolean isPerishable,
+
+        /** Trạng thái (ACTIVE/INACTIVE, null = giữ nguyên). */
+        String status
 ) {
 }
