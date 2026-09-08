@@ -1,6 +1,7 @@
 package com.erp.core.dto.auth;
 
 import com.erp.core.enums.EntityStatus;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -11,6 +12,8 @@ import java.util.UUID;
 /**
  * Yêu cầu cập nhật thông tin tài khoản nội bộ (account) bởi admin.
  * Tất cả trường đều tùy chọn: chỉ những trường khác {@code null} mới được áp dụng.
+ * Gán vai trò đa chi nhánh qua {@code branchRoles} (mỗi chi nhánh một danh sách role);
+ * {@code roleIds} giữ tương thích cũ, đồng bộ vào chi nhánh công tác.
  */
 public record UpdateAccountRequest(
         @Size(max = 150, message = "Full name must not exceed 150 characters")
@@ -29,6 +32,8 @@ public record UpdateAccountRequest(
 
         EntityStatus status,
 
-        List<UUID> roleIds
+        List<UUID> roleIds,
+
+        List<@Valid AccountBranchRoleRequest> branchRoles
 ) {
 }
