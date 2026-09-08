@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public record StockCountItemRequest(
         @NotNull UUID materialId,
+        @NotNull
         @DecimalMin(value = "0.0")
         @Digits(integer = 11, fraction = 3)
         BigDecimal countedQuantity,
