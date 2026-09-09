@@ -13,6 +13,6 @@ public record StockBalanceResponse(
         String materialName,
         BigDecimal quantityOnHand,
         BigDecimal quantityReserved,
-        BigDecimal quantityAvailable,
+        BigDecimal availableQuantity,
         BigDecimal minStockAlert
 ) {}
