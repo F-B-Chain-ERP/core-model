@@ -27,4 +27,15 @@ public record ApiResponse<T>(
     public static <T> ApiResponse<T> created(T data) {
         return new ApiResponse<>(201, null, "Created", data, Instant.now());
     }
+
+    public static <T> ApiResponse<T> created(T data, String message) {
+        return new ApiResponse<>(201, null, message, data, Instant.now());
+    }
+
+    /**
+     * Bổ sung getter code để tương thích với các client hoặc tài liệu API mong muốn trường `code` thay cho hoặc song song với `status`.
+     */
+    public int getCode() {
+        return status;
+    }
 }
