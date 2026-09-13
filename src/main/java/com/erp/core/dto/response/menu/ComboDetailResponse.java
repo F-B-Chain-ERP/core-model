@@ -8,6 +8,7 @@ public record ComboDetailResponse(
         String code,
         String name,
         BigDecimal basePrice,
+        BigDecimal calculatedPrice,
         boolean isCombo,
         String status,
         List<ComboItemResponse> items

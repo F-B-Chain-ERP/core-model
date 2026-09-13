@@ -1,5 +1,7 @@
 package com.erp.core.dto.response.menu;
 
+import java.math.BigDecimal;
+
 public record ComboItemResponse(
         String comboItemId,
         String variantId,
@@ -8,8 +10,10 @@ public record ComboItemResponse(
         String sizeLabel,
         String productCode,
         String productName,
+        BigDecimal variantPrice,
         int quantity,
         boolean isSubstitutable,
-        String status
+        String status,
+        BigDecimal lineTotal
 ) {
 }
