@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.inv;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -26,6 +27,6 @@ public record CreateStockOutRequest(
         String note,
 
         @NotEmpty(message = "Phiếu xuất phải có ít nhất một dòng chi tiết")
-        List<StockOutItemRequest> items
+        List<@Valid StockOutItemRequest> items
 ) {
 }
