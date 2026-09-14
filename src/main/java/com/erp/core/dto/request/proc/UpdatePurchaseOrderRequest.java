@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.proc;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -17,6 +18,6 @@ public record UpdatePurchaseOrderRequest(
         LocalDate expectedDate,
         @Size(max = 500, message = "Ghi chú không được vượt quá 500 ký tự")
         String note,
-        List<PurchaseOrderItemRequest> items
+        List<@Valid PurchaseOrderItemRequest> items
 ) {
 }

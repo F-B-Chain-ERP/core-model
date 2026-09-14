@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.proc;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -14,6 +15,6 @@ import java.util.UUID;
  */
 public record ReceivePurchaseOrderRequest(
         @NotEmpty(message = "Vui lòng cung cấp ít nhất một dòng hàng đã nhận")
-        List<ReceivePurchaseOrderItemRequest> items
+        List<@Valid ReceivePurchaseOrderItemRequest> items
 ) {
 }

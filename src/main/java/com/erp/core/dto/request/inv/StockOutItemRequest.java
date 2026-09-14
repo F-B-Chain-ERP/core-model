@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.inv;
 
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -17,9 +18,11 @@ public record StockOutItemRequest(
 
         @NotNull(message = "Số lượng không được để trống")
         @Positive(message = "Số lượng phải lớn hơn 0")
+        @Digits(integer = 11, fraction = 3, message = "Số lượng tối đa 11 số nguyên và 3 số lẻ")
         BigDecimal quantity,
 
         @PositiveOrZero(message = "Đơn giá không được âm")
+        @Digits(integer = 10, fraction = 2, message = "Đơn giá tối đa 10 số nguyên và 2 số lẻ")
         BigDecimal unitPrice,
 
         @Size(max = 80, message = "Mã lô không được vượt quá 80 ký tự")

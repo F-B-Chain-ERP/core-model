@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.proc;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -29,6 +30,6 @@ public record CreatePurchaseOrderRequest(
         String note,
 
         @NotEmpty(message = "Đơn mua hàng phải có ít nhất một dòng chi tiết")
-        List<PurchaseOrderItemRequest> items
+        List<@Valid PurchaseOrderItemRequest> items
 ) {
 }
