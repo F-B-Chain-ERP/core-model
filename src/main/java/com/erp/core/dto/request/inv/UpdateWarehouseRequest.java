@@ -1,7 +1,6 @@
 package com.erp.core.dto.request.inv;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -28,7 +27,6 @@ public record UpdateWarehouseRequest(
         )
         String warehouseType,
 
-        @NotNull(message = "Kho phải thuộc một chi nhánh")
         UUID branchId,
 
         @Size(max = 255, message = "Địa chỉ tối đa 255 ký tự")
