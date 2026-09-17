@@ -11,5 +11,5 @@ public record OrderResponse(UUID id, String orderCode, UUID branchId, UUID custo
                             BigDecimal subtotal, BigDecimal discount, BigDecimal shippingFee,
                             BigDecimal totalAmount, BigDecimal totalCogs, String shippingAddress,
                             String note, Instant createdAt, List<OrderItemResponse> items,
-                            DeliveryResponse delivery) {
+                            DeliveryResponse delivery, UUID pickupTimeSlotId, String pickupSlotCode) {
 }
