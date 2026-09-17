@@ -7,5 +7,7 @@ import java.util.UUID;
 public record OrderItemResponse(UUID id, String productCode, String productName, UUID variantId,
                                 String variantCode, String variantName, Integer quantity, String iceLevel, String sugarLevel,
                                 String note, BigDecimal unitPrice, BigDecimal amount,
-                                BigDecimal unitCogsAmount, List<OrderItemToppingResponse> toppings) {
+                                BigDecimal unitCogsAmount, List<OrderItemToppingResponse> toppings,
+                                /** Ảnh hiện tại của SP (resolve lúc đọc, không snapshot để khỏi sửa schema). */
+                                String productImageUrl) {
 }
