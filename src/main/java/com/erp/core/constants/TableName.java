@@ -57,6 +57,7 @@ public final class TableName {
     // ---- STORE module (008-store) ----
     public static final String SHIFT = "shift";
     public static final String SHIFT_ASSIGNMENT = "shift_assignment";
+    public static final String SHIFT_REPORT = "shift_report";
     public static final String STORE_DAILY_REPORT = "store_daily_report";
     public static final String BRANCH_VARIANT_DAILY_STOCK = "branch_variant_daily_stock";
     public static final String BRANCH_VARIANT_STOCK_LOG = "branch_variant_stock_log";
