@@ -16,6 +16,7 @@ public record CreateOrderRequest(
     @Size(max = 255) String shippingAddress,
     @NotBlank @Pattern(regexp = "CASH|COD|VNPAY|MOMO|BANK_TRANSFER") String paymentMethod,
     @Size(max = 500) String note,
+    UUID pickupTimeSlotId,
     String sessionToken
 ) {
 }

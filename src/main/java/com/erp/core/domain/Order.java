@@ -60,6 +60,9 @@ public class Order extends BaseAuditingEntity {
     @Column(name = "pickup_time")
     private Instant pickupTime;
 
+    @Column(name = "pickup_time_slot_id")
+    private UUID pickupTimeSlotId;
+
     @Column(name = "delivery_address", length = 255)
     private String deliveryAddress;
 
@@ -219,6 +222,14 @@ public class Order extends BaseAuditingEntity {
 
     public void setPickupTime(Instant pickupTime) {
         this.pickupTime = pickupTime;
+    }
+
+    public UUID getPickupTimeSlotId() {
+        return pickupTimeSlotId;
+    }
+
+    public void setPickupTimeSlotId(UUID pickupTimeSlotId) {
+        this.pickupTimeSlotId = pickupTimeSlotId;
     }
 
     public String getDeliveryAddress() {
