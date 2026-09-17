@@ -87,6 +87,7 @@ public final class TableName {
     public static final String NOTIFICATION_TEMPLATE = "notification_template";
     public static final String NOTIFICATION = "notification";
     public static final String IDEMPOTENCY_KEY = "idempotency_key";
+    public static final String REPORT_JOB = "report_job";
 
     private TableName() {
     }
