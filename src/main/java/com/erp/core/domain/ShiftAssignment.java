@@ -4,6 +4,7 @@ import com.erp.core.constants.TableName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -32,6 +33,15 @@ public class ShiftAssignment extends BaseAuditingEntity {
 
     @Column(name = "check_out_at")
     private Instant checkOutAt;
+
+    @Column(name = "initial_cash", nullable = false, precision = 14, scale = 2)
+    private BigDecimal initialCash = BigDecimal.ZERO;
+
+    @Column(name = "final_cash", nullable = false, precision = 14, scale = 2)
+    private BigDecimal finalCash = BigDecimal.ZERO;
+
+    @Column(name = "cash_difference", nullable = false, precision = 14, scale = 2)
+    private BigDecimal cashDifference = BigDecimal.ZERO;
 
     @Column(name = "note", length = 255)
     private String note;
@@ -90,6 +100,30 @@ public class ShiftAssignment extends BaseAuditingEntity {
 
     public void setCheckOutAt(Instant checkOutAt) {
         this.checkOutAt = checkOutAt;
+    }
+
+    public BigDecimal getInitialCash() {
+        return initialCash;
+    }
+
+    public void setInitialCash(BigDecimal initialCash) {
+        this.initialCash = initialCash;
+    }
+
+    public BigDecimal getFinalCash() {
+        return finalCash;
+    }
+
+    public void setFinalCash(BigDecimal finalCash) {
+        this.finalCash = finalCash;
+    }
+
+    public BigDecimal getCashDifference() {
+        return cashDifference;
+    }
+
+    public void setCashDifference(BigDecimal cashDifference) {
+        this.cashDifference = cashDifference;
     }
 
     public String getNote() {
