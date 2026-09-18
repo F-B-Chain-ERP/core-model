@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.menu;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,6 +14,7 @@ public record AddComboItemRequest(
         @Min(value = 1, message = "Số lượng phải >= 1")
         Integer quantity,
 
+        @JsonProperty("isSubstitutable")
         Boolean isSubstitutable
 ) {
     public AddComboItemRequest {

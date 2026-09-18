@@ -1,5 +1,6 @@
 package com.erp.core.dto.request.menu;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -23,6 +24,7 @@ public record BulkSyncComboItemsRequest(
             @Min(value = 1, message = "Số lượng phải >= 1")
             Integer quantity,
 
+            @JsonProperty("isSubstitutable")
             Boolean isSubstitutable
     ) {
         public SyncComboItemEntry {
