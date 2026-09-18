@@ -11,8 +11,10 @@ public record ToppingResponse(
         String imageUrl,
         String groupName,
         String materialId,
+        String materialName,
         BigDecimal materialQuantity,
         String status,
+        String createdBy,
         Instant createdAt,
         Instant updatedAt
 ) {

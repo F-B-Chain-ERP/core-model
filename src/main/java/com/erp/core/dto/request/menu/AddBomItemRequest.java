@@ -21,7 +21,7 @@ public record AddBomItemRequest(
         @NotNull(message = "Đơn vị tính không được để trống")
         UUID unitId,
 
-        @DecimalMin(value = "0.0", message = "Tỷ lệ hao hụt không được nhỏ hơn 0%")
+        @DecimalMin(value = "0.0", message = "Tỷ lệ hao hụt phải lớn hơn 0%")
         @DecimalMax(value = "100.0", message = "Tỷ lệ hao hụt không được vượt quá 100%")
         BigDecimal wastagePercent
 ) {
