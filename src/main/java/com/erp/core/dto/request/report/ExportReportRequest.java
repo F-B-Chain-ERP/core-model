@@ -1,6 +1,7 @@
 package com.erp.core.dto.request.report;
 
 import com.erp.core.enums.ExportFormat;
+import com.erp.core.enums.ExportReportMode;
 import com.erp.core.enums.ReportModule;
 import jakarta.validation.constraints.NotNull;
 
@@ -26,6 +27,18 @@ public record ExportReportRequest(
 
         LocalDate toDate,
 
-        String note
+        String note,
+
+        /**
+         * Chế độ điều phối: {@code AUTO} (mặc định — tự chọn Sync/Async theo ngưỡng),
+         * {@code SYNC} (ép đồng bộ) hoặc {@code ASYNC} (ép bất đồng bộ).
+         * Nếu để {@code null} hệ thống xử lý như {@code AUTO}.
+         */
+        ExportReportMode mode
 ) {
+    public ExportReportRequest {
+        if (mode == null) {
+            mode = ExportReportMode.AUTO;
+        }
+    }
 }
