@@ -7,6 +7,7 @@ public record KdsTicketSummaryResponse(
     UUID id,
     UUID orderId,
     String orderCode,
+    String orderStatus,
     UUID branchId,
     String station,
     Integer queueNo,
