@@ -27,7 +27,7 @@ public class AccountsPayable extends BaseAuditingEntity {
     @Column(name = "paid_amount", nullable = false, precision = 14, scale = 2)
     private BigDecimal paidAmount = BigDecimal.ZERO;
 
-    @Column(name = "due_date", nullable = false)
+    @Column(name = "due_date", nullable = true)
     private LocalDate dueDate;
 
     @Column(name = "status", nullable = false, length = 30)
