@@ -1,6 +1,7 @@
 package com.erp.core.dto.request.report.store;
 
 import com.erp.core.enums.ExportFormat;
+import com.erp.core.enums.ExportReportMode;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -21,6 +22,13 @@ public record ExportShiftReportRequest(
         String status,
 
         @NotNull(message = "Định dạng xuất file không được để trống")
-        ExportFormat format
+        ExportFormat format,
+
+        ExportReportMode mode
 ) {
+    public ExportShiftReportRequest {
+        if (mode == null) {
+            mode = ExportReportMode.AUTO;
+        }
+    }
 }
