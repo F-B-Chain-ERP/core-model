@@ -22,8 +22,8 @@ public record UpdateWarehouseRequest(
 
         @NotBlank(message = "Loại kho không được để trống")
         @Pattern(
-                regexp = "^(BRANCH|CENTRAL|VIRTUAL)$",
-                message = "Loại kho phải là BRANCH, CENTRAL hoặc VIRTUAL"
+                regexp = "^(BRANCH|CENTRAL)$",
+                message = "Loại kho phải là CENTRAL hoặc BRANCH"
         )
         String warehouseType,
 
