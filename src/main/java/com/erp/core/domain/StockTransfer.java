@@ -30,6 +30,24 @@ public class StockTransfer extends BaseAuditingEntity {
     @Column(name = "note", length = 500)
     private String note;
 
+    /** Người tạo yêu cầu (phe quán). */
+    @Column(name = "requested_by")
+    private UUID requestedBy;
+
+    /** Người duyệt yêu cầu (phe kho, được trùng người xuất). */
+    @Column(name = "approved_by")
+    private UUID approvedBy;
+
+    @Column(name = "approved_at")
+    private Instant approvedAt;
+
+    /** Người bấm xuất kho (phe kho). */
+    @Column(name = "dispatched_by")
+    private UUID dispatchedBy;
+
+    @Column(name = "dispatched_at")
+    private Instant dispatchedAt;
+
     @Column(name = "received_by")
     private UUID receivedBy;
 
@@ -82,6 +100,46 @@ public class StockTransfer extends BaseAuditingEntity {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public UUID getRequestedBy() {
+        return requestedBy;
+    }
+
+    public void setRequestedBy(UUID requestedBy) {
+        this.requestedBy = requestedBy;
+    }
+
+    public UUID getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(UUID approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public Instant getApprovedAt() {
+        return approvedAt;
+    }
+
+    public void setApprovedAt(Instant approvedAt) {
+        this.approvedAt = approvedAt;
+    }
+
+    public UUID getDispatchedBy() {
+        return dispatchedBy;
+    }
+
+    public void setDispatchedBy(UUID dispatchedBy) {
+        this.dispatchedBy = dispatchedBy;
+    }
+
+    public Instant getDispatchedAt() {
+        return dispatchedAt;
+    }
+
+    public void setDispatchedAt(Instant dispatchedAt) {
+        this.dispatchedAt = dispatchedAt;
     }
 
     public UUID getReceivedBy() {
