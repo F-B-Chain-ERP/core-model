@@ -1,6 +1,7 @@
 package com.erp.core.dto.request.report.proc;
 
 import com.erp.core.enums.ExportFormat;
+import com.erp.core.enums.ExportReportMode;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -23,6 +24,13 @@ public record ExportPurchaseOrderReportRequest(
         LocalDate toDate,
 
         @NotNull(message = "Định dạng xuất file không được để trống")
-        ExportFormat format
+        ExportFormat format,
+
+        ExportReportMode mode
 ) {
+    public ExportPurchaseOrderReportRequest {
+        if (mode == null) {
+            mode = ExportReportMode.AUTO;
+        }
+    }
 }
