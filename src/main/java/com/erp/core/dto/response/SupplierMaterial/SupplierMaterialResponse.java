@@ -28,7 +28,7 @@ public record SupplierMaterialResponse(
         /** Tên nguyên vật liệu (đã giải quyết từ {@code materialId}). */
         String materialName,
 
-        /** Tên đơn vị tính của nguyên vật liệu. */
+        /** Tên đơn vị tính của nguyên vật liệu (đã giải quyết từ {@code material.baseUnitId}). */
         String unitName,
 
         /** Mã hàng hóa riêng của nhà cung cấp (nếu có). */
