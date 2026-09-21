@@ -13,6 +13,8 @@ import java.util.UUID;
 public record ExportShiftReportRequest(
         UUID branchId,
 
+        UUID shiftReportId,
+
         LocalDate businessDate,
 
         LocalDate startDate,
@@ -30,5 +32,10 @@ public record ExportShiftReportRequest(
         if (mode == null) {
             mode = ExportReportMode.AUTO;
         }
+    }
+
+    public ExportShiftReportRequest(UUID branchId, LocalDate businessDate, LocalDate startDate, LocalDate endDate,
+                                  String status, ExportFormat format, ExportReportMode mode) {
+        this(branchId, null, businessDate, startDate, endDate, status, format, mode);
     }
 }

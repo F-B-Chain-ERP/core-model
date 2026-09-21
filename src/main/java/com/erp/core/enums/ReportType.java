@@ -1,6 +1,7 @@
 package com.erp.core.enums;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -8,47 +9,60 @@ import java.util.Map;
  * Các loại báo cáo chuẩn do hệ thống hỗ trợ xuất.
  *
  * <p>Mỗi giá trị mang một mã chuẩn ({@link #getCode()}) dùng làm "hợp đồng" giữa
- * Frontend và Backend. Riêng nhóm POS giữ cả bí danh của tài liệu thiết kế
- * ({@code ORDER_LIST}, {@code SALES_SUMMARY}) để dùng được cả hai cách đặt tên:
- * {@link #from(String)} sẽ chuẩn hoá về mã chuẩn.</p>
+ * Frontend và Backend. Hệ thống hỗ trợ đa bí danh (aliases) để tương thích ngược
+ * với các phiên bản cũ và mã thiết kế.</p>
  */
 public enum ReportType {
 
-    /** Danh sách đơn hàng POS (thiết kế: ORDER_LIST). */
-    POS_ORDER_EXPORT("ORDER_LIST"),
+    /** Danh sách đơn hàng POS (thiết kế: ORDER_LIST, legacy: POS_ORDER_EXPORT). */
+    POS_ORDER_LIST(List.of("ORDER_LIST", "POS_ORDER_EXPORT")),
     /** Tổng hợp doanh thu POS theo sản phẩm/biến thể (thiết kế: SALES_SUMMARY). */
-    POS_SALES_SUMMARY("SALES_SUMMARY"),
-    /** Báo cáo tổng hợp ngày cho cửa hàng. */
-    STORE_DAILY_REPORT(null),
-    /** Báo cáo chốt ca cho cửa hàng. */
-    STORE_SHIFT_REPORT(null),
+    POS_SALES_SUMMARY(List.of("SALES_SUMMARY")),
+    /** Báo cáo chốt ca bán hàng cho 1 ca duy nhất (biên bản bàn giao ca). */
+    STORE_SHIFT_HANDOVER(List.of("STORE_SHIFT_REPORT", "SHIFT_HANDOVER")),
+    /** Danh sách các ca làm việc của cửa hàng theo khoảng thời gian. */
+    STORE_SHIFT_LIST(List.of("SHIFT_LIST")),
+    /** Báo cáo tổng hợp doanh thu ngày của chi nhánh (chi tiết theo từng ca trong ngày). */
+    STORE_DAILY_CLOSING(List.of("STORE_DAILY_REPORT", "DAILY_CLOSING")),
+    /** Danh sách tổng hợp nhiều ngày theo khoảng thời gian. */
+    STORE_DAILY_LIST(List.of("DAILY_LIST")),
     /** Báo cáo tổng hợp tài chính. */
-    FIN_SUMMARY_EXPORT(null),
+    FIN_SUMMARY_EXPORT(List.of()),
     /** Báo cáo tồn kho. */
-    INV_STOCK_BALANCE(null),
+    INV_STOCK_BALANCE(List.of()),
     /** Báo cáo đơn mua hàng (Procurement). */
-    PROC_PO_EXPORT(null);
+    PROC_PO_EXPORT(List.of()),
+
+    // Legacy enum constants để đảm bảo 100% tương thích ngược khi compile code cũ:
+    POS_ORDER_EXPORT(List.of("ORDER_LIST")),
+    STORE_SHIFT_REPORT(List.of("STORE_SHIFT_HANDOVER")),
+    STORE_DAILY_REPORT(List.of("STORE_DAILY_CLOSING"));
 
     private static final Map<String, ReportType> LOOKUP = new HashMap<>();
 
     static {
         for (ReportType type : values()) {
-            LOOKUP.put(type.name().toLowerCase(Locale.ROOT), type);
-            if (type.legacyAlias != null) {
-                LOOKUP.put(type.legacyAlias.toLowerCase(Locale.ROOT), type);
+            LOOKUP.putIfAbsent(type.name().toLowerCase(Locale.ROOT), type);
+            for (String alias : type.aliases) {
+                LOOKUP.putIfAbsent(alias.toLowerCase(Locale.ROOT), type);
             }
         }
     }
 
-    private final String legacyAlias;
+    private final List<String> aliases;
 
-    ReportType(String legacyAlias) {
-        this.legacyAlias = legacyAlias;
+    ReportType(List<String> aliases) {
+        this.aliases = aliases != null ? aliases : List.of();
     }
 
     /** Mã chuẩn dùng để trao đổi với Frontend (bằng {@code name()} của enum). */
     public String getCode() {
-        return name();
+        return switch (this) {
+            case POS_ORDER_EXPORT -> POS_ORDER_LIST.name();
+            case STORE_SHIFT_REPORT -> STORE_SHIFT_HANDOVER.name();
+            case STORE_DAILY_REPORT -> STORE_DAILY_CLOSING.name();
+            default -> name();
+        };
     }
 
     /**

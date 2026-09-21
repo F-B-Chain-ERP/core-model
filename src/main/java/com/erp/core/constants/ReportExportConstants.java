@@ -35,11 +35,11 @@ public final class ReportExportConstants {
     /** Giới hạn an toàn tối đa cho luồng Sync — chặn ép Sync khi dữ liệu quá lớn (chống OOM). */
     public static final int MAX_HARD_SYNC_RECORDS = 500;
 
-    /** Đường dẫn mặc định của file logo thương hiệu nhúng vào header Excel/PDF. */
-    public static final String DEFAULT_LOGO_PATH = "C:/ERP-UTT/image.png";
+    /** Đường dẫn mặc định của file logo thương hiệu nhúng vào header Excel/PDF (đóng gói sẵn trong JAR). */
+    public static final String DEFAULT_LOGO_PATH = "classpath:/report/logo-erp.png";
 
     /** Chu kỳ polling mặc định của Frontend khi theo dõi trạng thái job Async. */
-    public static final int DEFAULT_POLL_INTERVAL_MS = 3000;
+    public static final int DEFAULT_POLL_INTERVAL_MS = 5000;
 
     // ==== Mã loại báo cáo (reportType) chuẩn — "hợp đồng" giữa Frontend và Backend ====
     public static final String REPORT_TYPE_POS_ORDER_EXPORT = "POS_ORDER_EXPORT";

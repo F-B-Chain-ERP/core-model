@@ -42,8 +42,29 @@ public class ReportJob extends BaseAuditingEntity {
     @Column(name = "file_url", columnDefinition = "text")
     private String fileUrl;
 
+    @Column(name = "object_key", length = 255)
+    private String objectKey;
+
     @Column(name = "error_message", columnDefinition = "text")
     private String errorMessage;
+
+    @Column(name = "last_error", columnDefinition = "text")
+    private String lastError;
+
+    @Column(name = "attempt_count")
+    private Integer attemptCount = 0;
+
+    @Column(name = "heartbeat_at")
+    private Instant heartbeatAt;
+
+    @Column(name = "next_retry_at")
+    private Instant nextRetryAt;
+
+    @Column(name = "cancelled_at")
+    private Instant cancelledAt;
+
+    @Column(name = "expired_at")
+    private Instant expiredAt;
 
     @Column(name = "started_at")
     private Instant startedAt;
@@ -148,5 +169,61 @@ public class ReportJob extends BaseAuditingEntity {
 
     public void setCompletedAt(Instant completedAt) {
         this.completedAt = completedAt;
+    }
+
+    public String getObjectKey() {
+        return objectKey;
+    }
+
+    public void setObjectKey(String objectKey) {
+        this.objectKey = objectKey;
+    }
+
+    public String getLastError() {
+        return lastError;
+    }
+
+    public void setLastError(String lastError) {
+        this.lastError = lastError;
+    }
+
+    public Integer getAttemptCount() {
+        return attemptCount;
+    }
+
+    public void setAttemptCount(Integer attemptCount) {
+        this.attemptCount = attemptCount;
+    }
+
+    public Instant getHeartbeatAt() {
+        return heartbeatAt;
+    }
+
+    public void setHeartbeatAt(Instant heartbeatAt) {
+        this.heartbeatAt = heartbeatAt;
+    }
+
+    public Instant getNextRetryAt() {
+        return nextRetryAt;
+    }
+
+    public void setNextRetryAt(Instant nextRetryAt) {
+        this.nextRetryAt = nextRetryAt;
+    }
+
+    public Instant getCancelledAt() {
+        return cancelledAt;
+    }
+
+    public void setCancelledAt(Instant cancelledAt) {
+        this.cancelledAt = cancelledAt;
+    }
+
+    public Instant getExpiredAt() {
+        return expiredAt;
+    }
+
+    public void setExpiredAt(Instant expiredAt) {
+        this.expiredAt = expiredAt;
     }
 }

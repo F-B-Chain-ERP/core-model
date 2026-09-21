@@ -68,6 +68,23 @@ public final class ReportLogoResolver {
         if (path == null || path.isBlank()) {
             return null;
         }
+
+        // 1. Hỗ trợ tiền tố classpath: (ví dụ: classpath:/report/logo-erp.png hoặc classpath:report/logo-erp.png)
+        if (path.startsWith("classpath:")) {
+            String resourcePath = path.substring("classpath:".length()).trim();
+            if (!resourcePath.startsWith("/")) {
+                resourcePath = "/" + resourcePath;
+            }
+            try (InputStream in = ReportLogoResolver.class.getResourceAsStream(resourcePath)) {
+                if (in != null) {
+                    return in.readAllBytes();
+                }
+            } catch (Exception ignored) {
+            }
+            return null;
+        }
+
+        // 2. Nạp từ hệ thống tệp cục bộ (file hệ thống / mount volume)
         try {
             Path resolved = Path.of(path);
             if (Files.exists(resolved) && Files.isRegularFile(resolved)) {
@@ -76,6 +93,17 @@ public final class ReportLogoResolver {
         } catch (Exception ignored) {
             // Logo là tuỳ chọn — thiếu/không đọc được thì chuyển nguồn kế tiếp.
         }
+
+        // 3. Fallback: Nếu đường dẫn bắt đầu bằng '/' thì thử đọc từ classpath
+        if (path.startsWith("/")) {
+            try (InputStream in = ReportLogoResolver.class.getResourceAsStream(path)) {
+                if (in != null) {
+                    return in.readAllBytes();
+                }
+            } catch (Exception ignored) {
+            }
+        }
+
         return null;
     }
 }
