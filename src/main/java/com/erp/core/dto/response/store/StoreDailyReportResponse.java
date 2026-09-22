@@ -20,6 +20,7 @@ public record StoreDailyReportResponse(
         BigDecimal netRevenue,
         BigDecimal cashAmount,
         BigDecimal transferAmount,
+        BigDecimal cashPayout,
         String status,
         UUID submittedById,
         String submittedByName,
