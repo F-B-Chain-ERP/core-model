@@ -16,5 +16,12 @@ public record DailyStockLineResponse(
     LocalDate businessDate,
     Integer openingQuantity,
     Integer soldQuantity,
-    Integer remainingQuantity
+    Integer remainingQuantity,
+    /**
+     * Số ly tối đa pha được từ tồn NVL kho quán (min theo BOM, quy đơn vị gốc).
+     * null = chưa có công thức hoặc chưa xác định được kho (xem hasRecipe).
+     */
+    Integer capabilityQuantity,
+    /** false = biến thể chưa có dòng BOM ACTIVE nào. */
+    boolean hasRecipe
 ) {}
