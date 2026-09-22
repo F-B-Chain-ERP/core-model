@@ -28,6 +28,7 @@ public record ShiftAssignmentResponse(
         BigDecimal finalCash,
         BigDecimal cashDifference,
         String note,
-        Instant createdAt
+        Instant createdAt,
+        Boolean cashHandler
 ) {
 }
