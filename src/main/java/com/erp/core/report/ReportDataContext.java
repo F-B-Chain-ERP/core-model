@@ -32,7 +32,7 @@ public record ReportDataContext(
 
     public ReportDataContext {
         columns = columns != null ? List.copyOf(columns) : Collections.emptyList();
-        rows = rows != null ? List.copyOf(rows) : Collections.emptyList();
+        rows = rows != null ? rows : Collections.emptyList();
         secondaryData = secondaryData != null ? List.copyOf(secondaryData) : Collections.emptyList();
     }
 
