@@ -18,6 +18,11 @@ public record StockTransferResponse(
         LocalDate transferDate,
         String status,
         String note,
+        UUID requestedBy,
+        UUID approvedBy,
+        Instant approvedAt,
+        UUID dispatchedBy,
+        Instant dispatchedAt,
         UUID receivedBy,
         Instant receivedAt,
         List<StockTransferItemResponse> items

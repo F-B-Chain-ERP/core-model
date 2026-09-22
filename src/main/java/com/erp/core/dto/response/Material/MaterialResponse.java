@@ -32,6 +32,15 @@ public record MaterialResponse(
         /** Tên đơn vị tính cơ bản (chỉ có khi query detail). */
         String unitName,
 
+        /** ID đơn vị đóng gói hay nhập (UUID dạng chuỗi, null = không dùng). */
+        String packUnitId,
+
+        /** Tên đơn vị đóng gói (chỉ có khi query detail). */
+        String packUnitName,
+
+        /** 1 đơn vị đóng gói = bao nhiêu đơn vị cơ sở. */
+        BigDecimal packToBaseFactor,
+
         /** Ngưỡng cảnh báo tồn tối thiểu. */
         BigDecimal minStockAlert,
 

@@ -26,6 +26,13 @@ public record CreateMaterialRequest(
         @NotNull(message = "Đơn vị tính cơ sở không được để trống")
         UUID baseUnitId,
 
+        /** Đơn vị đóng gói hay nhập (VD bao/thùng, null = không dùng). */
+        UUID packUnitId,
+
+        /** 1 đơn vị đóng gói = bao nhiêu đơn vị cơ sở (bắt buộc khi có packUnitId). */
+        @DecimalMin(value = "0.0", inclusive = false, message = "Hệ số đóng gói phải lớn hơn 0")
+        BigDecimal packToBaseFactor,
+
         @DecimalMin(value = "0.0", inclusive = true, message = "Ngưỡng tồn tối thiểu phải lớn hơn hoặc bằng 0")
         BigDecimal minStockAlert,
 

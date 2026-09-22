@@ -23,6 +23,12 @@ public class Material extends BaseAuditingEntity {
     @Column(name = "base_unit_id", nullable = false)
     private UUID baseUnitId;
 
+    @Column(name = "pack_unit_id")
+    private UUID packUnitId;
+
+    @Column(name = "pack_to_base_factor", precision = 18, scale = 6)
+    private BigDecimal packToBaseFactor;
+
     @Column(name = "min_stock_alert", nullable = false, precision = 14, scale = 3)
     private BigDecimal minStockAlert = BigDecimal.ZERO;
 
@@ -65,6 +71,22 @@ public class Material extends BaseAuditingEntity {
 
     public void setBaseUnitId(UUID baseUnitId) {
         this.baseUnitId = baseUnitId;
+    }
+
+    public UUID getPackUnitId() {
+        return packUnitId;
+    }
+
+    public void setPackUnitId(UUID packUnitId) {
+        this.packUnitId = packUnitId;
+    }
+
+    public BigDecimal getPackToBaseFactor() {
+        return packToBaseFactor;
+    }
+
+    public void setPackToBaseFactor(BigDecimal packToBaseFactor) {
+        this.packToBaseFactor = packToBaseFactor;
     }
 
     public BigDecimal getMinStockAlert() {

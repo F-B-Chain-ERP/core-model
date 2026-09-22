@@ -23,6 +23,7 @@ public final class TableName {
 
     // ---- INV module (005-inv) ----
     public static final String UNIT = "unit";
+    public static final String UNIT_CONVERSION = "unit_conversion";
     public static final String CATEGORY = "category";
     public static final String MATERIAL = "material";
     public static final String WAREHOUSE = "warehouse";
