@@ -49,6 +49,9 @@ public record ProductSalesResponse(
         /** Các mức đường khả dụng (dạng chuỗi csv, ví dụ: 0,30,50,70,100). */
         String availableSugarLevels,
 
+        /** Số món thành phần nếu là combo (0 với món đơn). Chỉ trả count, tránh payload/N+1 ở list. */
+        int comboItemCount,
+
         /** Trạng thái (ACTIVE). */
         String status
 ) {

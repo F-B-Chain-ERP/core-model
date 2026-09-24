@@ -56,6 +56,9 @@ public record ProductDetailResponse(
         /** Danh sách các phiên bản / kích cỡ (variants) của sản phẩm. */
         List<ProductVariantResponse> variants,
 
+        /** Thành phần combo (rỗng nếu không phải combo). Combo không có product_variant riêng. */
+        List<ComboItemResponse> comboItems,
+
         /** Người tạo bản ghi. */
         String createdBy,
 
