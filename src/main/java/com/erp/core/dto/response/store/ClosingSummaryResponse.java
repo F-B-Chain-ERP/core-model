@@ -23,6 +23,7 @@ public record ClosingSummaryResponse(
         BigDecimal totalSales,
         Integer ordersCount,
         BigDecimal cashPayout,
-        BigDecimal expectedCash
+        BigDecimal expectedCash,
+        Integer unpaidCount
 ) {
 }
