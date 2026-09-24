@@ -53,6 +53,12 @@ public record ProductSalesResponse(
         int comboItemCount,
 
         /** Trạng thái (ACTIVE). */
-        String status
+        String status,
+
+        /** false để FE vẫn hiển thị món nhưng vô hiệu hóa thao tác mua. */
+        boolean saleable,
+
+        /** Lý do không bán được, ví dụ "Chưa có công thức". */
+        String unavailableReason
 ) {
 }

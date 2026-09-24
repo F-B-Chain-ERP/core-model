@@ -69,7 +69,12 @@ public record ProductDetailResponse(
         String updatedBy,
 
         /** Thời điểm cập nhật gần nhất. */
-        Instant updatedAt
+        Instant updatedAt,
+
+        /** false để màn chi tiết vô hiệu hóa nút thêm giỏ nhưng vẫn giải thích được lý do. */
+        boolean saleable,
+
+        String unavailableReason
 ) {
     /**
      * Getter phụ trợ trả về đường dẫn ảnh (image) tương ứng với imageUrl.

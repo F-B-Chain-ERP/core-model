@@ -25,6 +25,12 @@ public record ProductVariantResponse(
         int displayOrder,
 
         /** Trạng thái kích cỡ (ACTIVE, INACTIVE...). */
-        String status
+        String status,
+
+        /** false để FE hiển thị size dạng disabled thay vì xóa khỏi danh sách. */
+        boolean saleable,
+
+        /** Lý do size không bán được. */
+        String unavailableReason
 ) {
 }
